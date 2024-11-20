@@ -28,17 +28,23 @@ class _AddBookPageState extends State<AddBookPage> {
               decoration: const InputDecoration(labelText: 'Book Title'),
             ),
             const SizedBox(height: 20),
-            Slider(
-              value: _rating,
-              min: 0,
-              max: 5,
-              divisions: 5,
-              label: _rating.toStringAsFixed(1),
-              onChanged: (value) {
-                setState(() {
-                  _rating = value;
-                });
-              },
+            // Star Rating Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(5, (index) {
+                return IconButton(
+                  icon: Icon(
+                    index < _rating ? Icons.star : Icons.star_border,
+                    color: Colors.amber,
+                    size: 40.0,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _rating = index + 1.0;
+                    });
+                  },
+                );
+              }),
             ),
             Text('Rating: ${_rating.toStringAsFixed(1)}'),
             const SizedBox(height: 20),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_book_page.dart';
 import 'book_detail_page.dart';
+import 'settings_page.dart'; // Import the SettingsPage
 import 'book.dart';
 
 class MainPage extends StatefulWidget {
@@ -73,6 +74,23 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: const Text("Books"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              // Navigate to the SettingsPage when the settings button is pressed
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(
+                    toggleDarkMode: widget.toggleDarkMode,
+                    isDarkMode: widget.isDarkMode,
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: Padding(
